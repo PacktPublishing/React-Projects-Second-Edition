@@ -1,4 +1,4 @@
-const Character = (character) => {
+function Character(character) {
   return (
     <div className='col-3'>
       <div className='card'>
@@ -14,6 +14,6 @@ const Character = (character) => {
       </div>
     </div>
   );
-};
+}
 
 export default Character;
