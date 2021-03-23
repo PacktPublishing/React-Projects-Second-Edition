@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import './App.css';
-import Header from './Header';
-import Profile from './Profile';
-import Projects from './Projects';
-import Project from './Project';
+import Header from '../components/Header';
+import Profile from '../pages/Profile';
+import Projects from '../pages/Projects';
+import Project from '../pages/Project';
 
 function App() {
   return (

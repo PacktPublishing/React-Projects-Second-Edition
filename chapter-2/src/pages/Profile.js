@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import List from './List';
-import Link from './Link';
+import List from '../components/List';
+import Link from '../components/Link';
 import './Profile.css';
 
 function Profile({ userName }) {
