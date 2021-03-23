@@ -3,7 +3,7 @@ import List from '../components/List';
 import Link from '../components/Link';
 import { useParams } from 'react-router-dom';
 
-function Project({ userName }) {
+function SingleProject({ userName }) {
   const [loading, setLoading] = useState(false);
   const [project, setProject] = useState([]);
   const { name } = useParams();
@@ -55,4 +55,4 @@ function Project({ userName }) {
   );
 }
 
-export default Project;
+export default SingleProject;

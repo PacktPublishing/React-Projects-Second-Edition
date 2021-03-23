@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import './App.css';
-import Header from '../components/Header';
-import Profile from '../pages/Profile';
-import Projects from '../pages/Projects';
-import Project from '../pages/Project';
+import Header from './components/Header';
+import Profile from './pages/Profile';
+import Projects from './pages/Projects';
+import SingleProject from './pages/SingleProject';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Profile userName='octocat' />
           </Route>
           <Route path='/projects/:name'>
-            <Project userName='octocat' />
+            <SingleProject userName='octocat' />
           </Route>
           <Route path='/projects'>
             <Projects userName='octocat' />
