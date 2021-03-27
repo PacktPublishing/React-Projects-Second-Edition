@@ -1,0 +1,11 @@
+.Task-wrapper {
+  background: darkGray;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 0% 5% 5% 5%;
+}
+
+.Task-wrapper h3 {
+  width: 100%;
+  margin: 0;
+}
