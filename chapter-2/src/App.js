@@ -5,7 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import Profile from './pages/Profile';
 import Projects from './pages/Projects';
-import SingleProject from './pages/SingleProject';
+import ProjectDetail from './pages/ProjectDetail';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Profile userName='octocat' />
           </Route>
           <Route path='/projects/:name'>
-            <SingleProject userName='octocat' />
+            <ProjectDetail userName='octocat' />
           </Route>
           <Route path='/projects'>
             <Projects userName='octocat' />
