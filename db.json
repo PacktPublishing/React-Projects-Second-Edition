@@ -56,5 +56,59 @@
       "body": " Curabitur nec sem lorem. Donec venenatis, arcu vitae malesuada consequat, dolor ante placerat mi, in fermentum diam ipsum id libero.",
       "lane": 4
     }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "hotelId": 1,
+      "title": "Best holiday ever",
+      "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "hotelId": 1,
+      "title": "Very clean",
+      "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+      "rating": 4
+    },
+    {
+      "id": 3,
+      "hotelId": 2,
+      "title": "Exceeded all expectations",
+      "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "hotelId": 2,
+      "title": "Very clean",
+      "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+      "rating": 4
+    },
+    {
+      "id": 5,
+      "hotelId": 3,
+      "title": "Older than pictures, but pleasant",
+      "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+      "rating": 3
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "title": "Downtown Hotel (***)",
+      "thumbnail": "https://picsum.photos/id/369/400/400"
+    },
+    {
+      "id": 2,
+      "title": "Fairytail castle (*****)",
+      "thumbnail": "https://picsum.photos/id/1040/400/400"
+    },
+    {
+      "id": 3,
+      "title": "Local Bed and Breakfast (**)",
+      "thumbnail": "https://picsum.photos/id/437/400/400"
+    }
   ]
 }

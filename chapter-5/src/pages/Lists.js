@@ -46,7 +46,6 @@ const Lists = () => {
         {loading || error ? (
           <span>{error || 'Loading...'}</span>
         ) : (
-          // data.map((list) => (
           lists.map((list) => (
             <ListLink key={list.id} to={`list/${list.id}`}>
               <Title>{list.title}</Title>

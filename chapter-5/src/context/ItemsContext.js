@@ -72,12 +72,7 @@ export const ItemsContextProvider = ({ children }) => {
       );
       const result = await data.json();
 
-
-      console.log({ result });
       if (result) {
-
-
-
         dispatch({
           type: 'ADD_ITEM_SUCCESS',
           payload: {
