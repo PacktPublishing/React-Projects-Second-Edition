@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import FormItem from '../components/FormItem/FormItem';
 import Button from '../components/Button/Button';
-import ItemsContext from '../context/ItemsContext';
+import ReviewsContext from '../context/ReviewsContext';
 
 const FormWrapper = styled.div`
   display: flex;
@@ -18,34 +18,34 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = () => {
+const ReviewForm = () => {
   let history = useHistory();
-  const { listId } = useParams();
+  const { hotelId } = useParams();
 
   const [title, setTitle] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [rating, setRating] = useState('');
 
-  const { addItem } = useContext(ItemsContext);
+  const { addReview } = useContext(ReviewsContext);
 
   function onSubmit(e) {
     e.preventDefault();
 
-    if (title && quantity && price) {
-      addItem({
+    if (title && description && rating) {
+      addReview({
         title,
-        quantity,
-        price,
-        listId,
+        description,
+        rating,
+        hotelId,
       });
     }
 
-    history.push(`/list/${listId}`);
+    history.push(`/hotel/${hotelId}`);
   }
 
   return (
     <>
-      {history && <NavBar goBack={() => history.goBack()} title={`Add Item`} />}
+      {history && <NavBar goBack={() => history.goBack()} title={`Add Review`} />}
       <FormWrapper>
         <form onSubmit={onSubmit}>
           <FormItem
@@ -56,26 +56,25 @@ const Form = () => {
             handleOnChange={(e) => setTitle(e.currentTarget.value)}
           />
           <FormItem
-            id='quantity'
-            label='Quantity'
-            type='number'
-            placeholder='0'
-            value={quantity}
-            handleOnChange={(e) => setQuantity(e.currentTarget.value)}
+            id='description'
+            label='description'
+            placeholder='Insert description'
+            value={description}
+            handleOnChange={(e) => setDescription(e.currentTarget.value)}
           />
           <FormItem
-            id='price'
-            label='Price'
+            id='rating'
+            label='rating'
             type='number'
-            placeholder='0.00'
-            value={price}
-            handleOnChange={(e) => setPrice(e.currentTarget.value)}
+            placeholder='0'
+            value={rating}
+            handleOnChange={(e) => setRating(e.currentTarget.value)}
           />
-          <SubmitButton>Add Item</SubmitButton>
+          <SubmitButton>Add Review</SubmitButton>
         </form>
       </FormWrapper>
     </>
   );
 };
 
-export default Form;
+export default ReviewForm;
