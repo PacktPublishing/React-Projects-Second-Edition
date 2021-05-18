@@ -32,6 +32,7 @@ server.post('/api/login', async (req, res) => {
 });
 
 server.use(middlewares);
+server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
   if (req.method === 'POST') {
     const token = req.headers.authorization;

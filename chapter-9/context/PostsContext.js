@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createContext, useReducer } from 'react';
 import Constants from 'expo-constants';
+import UserContext from './UserContext';
 
 const { apiUrl } = Constants.manifest.extra;
 
@@ -54,6 +55,7 @@ const reducer = (state, action) => {
 
 export const PostsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { user } = useContext(UserContext);
 
   async function fetchPosts() {
     try {
@@ -81,16 +83,16 @@ export const PostsContextProvider = ({ children }) => {
     }
   }
 
-  async function addPost({ userId, imageUrl, description }) {
-    const postId = Math.floor(Math.random() * 100);
-
+  async function addPost(imageUrl, description) {
     try {
       const data = await fetch(`${apiUrl}/api/posts`, {
         method: 'POST',
+        headers: {
+          authorization: user && user.token ? `Bearer ${user.token}` : '',
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          id: postId,
-          userId,
-          imageUrl,
+          imageUrl: imageUrl,
           description,
         }),
       });
@@ -100,8 +102,7 @@ export const PostsContextProvider = ({ children }) => {
         dispatch({
           type: 'ADD_POST_SUCCESS',
           payload: {
-            id: postId,
-            userId,
+            id: result.id,
             imageUrl,
             description,
           },

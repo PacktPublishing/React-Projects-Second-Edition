@@ -70,7 +70,7 @@ export const UserContextProvider = ({ children }) => {
       const token = await AsyncStorage.getItem('token');
 
       if (token !== null) {
-        dispatch({ type: 'SET_USER_TOKEN', payload: token });
+        dispatch({ type: 'SET_USER_TOKEN', payload: '' });
       }
     } catch (e) {}
   }

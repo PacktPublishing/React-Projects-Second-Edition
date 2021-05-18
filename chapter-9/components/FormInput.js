@@ -13,7 +13,7 @@ export default function FormInput({ onChange, ...props }) {
 
 const styles = StyleSheet.create({
   input: {
-    width: '90%',
+    width: '100%',
     padding: 20,
     display: 'flex',
     alignItems: 'center',

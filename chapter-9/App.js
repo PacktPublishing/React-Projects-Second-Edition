@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import Posts from './screens/Posts';
 import PostDetail from './screens/PostDetail';
 import Profile from './screens/Profile';
@@ -21,35 +22,37 @@ const Tab = createBottomTabNavigator();
 
 function Home() {
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: 'blue',
-        inactiveTintColor: 'gray',
-      }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => (
-          <FontAwesome
-            name={
-              (route.name === 'Posts' && 'feed') ||
-              (route.name === 'PostForm' && 'plus-square') ||
-              (route.name === 'Profile' && 'user')
-            }
-            size={size}
-            color={color}
-          />
-        ),
-      })}
-    >
-      <Stack.Screen name='Posts' component={Posts} />
-      <Stack.Screen
-        name='PostForm'
-        component={PostForm}
-        options={{
-          tabBarLabel: 'Add post',
+    <ActionSheetProvider>
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: 'blue',
+          inactiveTintColor: 'gray',
         }}
-      />
-      <Stack.Screen name='Profile' component={Profile} />
-    </Tab.Navigator>
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome
+              name={
+                (route.name === 'Posts' && 'feed') ||
+                (route.name === 'PostForm' && 'plus-square') ||
+                (route.name === 'Profile' && 'user')
+              }
+              size={size}
+              color={color}
+            />
+          ),
+        })}
+      >
+        <Stack.Screen name='Posts' component={Posts} />
+        <Stack.Screen
+          name='PostForm'
+          component={PostForm}
+          options={{
+            tabBarLabel: 'Add post',
+          }}
+        />
+        <Stack.Screen name='Profile' component={Profile} />
+      </Tab.Navigator>
+    </ActionSheetProvider>
   );
 }
 
