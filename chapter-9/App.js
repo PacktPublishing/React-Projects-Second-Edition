@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import React, { useContext, useEffect } from 'react';
+import { Platform } from 'react-native';
 import {
   NavigationContainer,
   getFocusedRouteNameFromRoute,
@@ -16,6 +17,7 @@ import Login from './screens/Login';
 
 import AppContext from './context/AppContext';
 import UserContext from './context/UserContext';
+import { navigationRef } from './routing';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,17 +31,21 @@ function Home() {
           inactiveTintColor: 'gray',
         }}
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome
-              name={
-                (route.name === 'Posts' && 'feed') ||
-                (route.name === 'PostForm' && 'plus-square') ||
-                (route.name === 'Profile' && 'user')
-              }
-              size={size}
-              color={color}
-            />
-          ),
+          tabBarIcon: ({ color, size }) => {
+            const iconName =
+              (route.name === 'Posts' &&
+                (Platform.OS === 'ios' ? 'feed' : 'rss-feed')) ||
+              (route.name === 'PostForm' &&
+                (Platform.OS === 'ios' ? 'plus-square' : 'add-box')) ||
+              (route.name === 'Profile' &&
+                (Platform.OS === 'ios' ? 'user' : 'person'));
+
+            return Platform.OS === 'ios' ? (
+              <FontAwesome name={iconName} size={size} color={color} />
+            ) : (
+              <MaterialIcons name={iconName} size={size} color={color} />
+            );
+          },
         })}
       >
         <Stack.Screen name='Posts' component={Posts} />
@@ -64,23 +70,18 @@ function Navigator() {
   }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <StatusBar style='auto' />
-      <Stack.Navigator>
-        {user.token ? (
-          <>
-            <Stack.Screen
-              name='Home'
-              component={Home}
-              options={({ route }) => ({
-                headerTitle: getFocusedRouteNameFromRoute(route),
-              })}
-            />
-            <Stack.Screen name='PostDetail' component={PostDetail} />
-          </>
-        ) : (
-          <Stack.Screen name='Login' component={Login} />
-        )}
+      <Stack.Navigator initialRouteName={user.token.length ? 'Home' : 'Login'}>
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={({ route }) => ({
+            headerTitle: getFocusedRouteNameFromRoute(route),
+          })}
+        />
+        <Stack.Screen name='PostDetail' component={PostDetail} />
+        <Stack.Screen name='Login' component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

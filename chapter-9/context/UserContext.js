@@ -65,18 +65,27 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  async function logoutUser() {
+    try {
+      await AsyncStorage.removeItem('token');
+      dispatch({ type: 'REMOVE_USER_TOKEN' });
+    } catch (e) {
+      dispatch({ type: 'SET_USER_ERROR', payload: e.message });
+    }
+  }
+
   async function getToken() {
     try {
       const token = await AsyncStorage.getItem('token');
 
       if (token !== null) {
-        dispatch({ type: 'SET_USER_TOKEN', payload: '' });
+        dispatch({ type: 'SET_USER_TOKEN', payload: token });
       }
     } catch (e) {}
   }
 
   return (
-    <UserContext.Provider value={{ ...state, loginUser, getToken }}>
+    <UserContext.Provider value={{ ...state, loginUser, logoutUser, getToken }}>
       {children}
     </UserContext.Provider>
   );

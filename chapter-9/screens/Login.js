@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import Button from '../components/Button';
@@ -14,7 +14,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user.token.length) {
-      navigation.navigate('Home');
+      navigation.navigate('Home', { screen: 'Posts' });
     }
   }, [user.token]);
 

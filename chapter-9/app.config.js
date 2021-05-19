@@ -1,5 +1,5 @@
 export default {
     extra: {
-      apiUrl: 'http://192.168.2.3:3000',
+      apiUrl: 'http://172.16.116.5:3000',
     },
   };

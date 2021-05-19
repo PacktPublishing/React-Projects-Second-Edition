@@ -197,6 +197,16 @@
       "imageUrl": "file:///var/mobile/Containers/Data/Application/885589E9-4A68-458F-B6FA-46B498D4C5AC/Library/Caches/ExponentExperienceData/%2540hackteam%252Fchapter-9/ImagePicker/7BFF622A-A0E4-42C4-8B28-274245EDEE0F.jpg",
       "description": "Test",
       "id": 44
+    },
+    {
+      "imageUrl": "file:///var/mobile/Containers/Data/Application/885589E9-4A68-458F-B6FA-46B498D4C5AC/Library/Caches/ExponentExperienceData/%2540hackteam%252Fchapter-9/ImagePicker/B649F0D6-54CF-4F60-A643-5A5100F9EFAC.jpg",
+      "description": "Test",
+      "id": 45
+    },
+    {
+      "imageUrl": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540hackteam%252Fchapter-9/ImagePicker/8b66145f-a976-418e-b242-02f6f99f6241.jpg",
+      "description": "Test",
+      "id": 46
     }
   ]
 }
