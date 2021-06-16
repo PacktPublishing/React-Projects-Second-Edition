@@ -4,18 +4,23 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Card from '../../components/Card';
 
-const SingleQuestionContainer = styled.div`
+const QuestionDetailContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   margin: 5%;
 `;
 
-function SingleQuestion() {
+const CardLink = styled.a`
+  text-decoration: none;
+`;
+
+function QuestionDetail() {
   const router = useRouter();
   const { id } = router.query;
 
   const [loading, setLoading] = useState(false);
+
   const [question, setQuestion] = useState({});
 
   useEffect(() => {
@@ -28,6 +33,7 @@ function SingleQuestion() {
 
       if (result) {
         setQuestion(result.items[0]);
+
         setLoading(false);
       }
     }
@@ -36,23 +42,23 @@ function SingleQuestion() {
   }, [id]);
 
   return (
-    <SingleQuestionContainer>
-      {loading ? (
-        <span>Loading...</span>
-      ) : (
-        <>
-          <Head>
-            <title>{question.title}</title>
-          </Head>
+    <>
+      <Head>
+        <title>{question.title}</title>
+      </Head>
+      <QuestionDetailContainer>
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
           <Card
             title={question.title}
             views={question.view_count}
-            answers={question.answer_count}
+            answers={question.answers_count}
           />
-        </>
-      )}
-    </SingleQuestionContainer>
+        )}
+      </QuestionDetailContainer>
+    </>
   );
 }
 
-export default SingleQuestion;
+export default QuestionDetail;

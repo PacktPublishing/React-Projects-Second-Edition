@@ -17,37 +17,36 @@ const CardLink = styled.a`
 
 function Questions({ questions, hasMore, page }) {
   return (
-    <QuestionsContainer>
+    <>
       <Head>
         <title>Questions</title>
       </Head>
-      <h2>Questions</h2>
-      <div>
-        {questions &&
-          questions.map((question) => (
-            <>
-              <Link
-                key={question.question_id}
-                href={`/questions/${question.question_id}`}
-                passHref
-              >
-                <CardLink>
-                  <Card
-                    title={question.title}
-                    views={question.view_count}
-                    answers={question.answer_count}
-                  />
-                </CardLink>
-              </Link>
-            </>
+      <QuestionsContainer>
+        <h2>Questions</h2>
+
+        <div>
+          {questions.map((question) => (
+            <Link
+              key={question.question_id}
+              href={`/questions/${question.question_id}`}
+              passHref
+            >
+              <CardLink>
+                <Card
+                  title={question.title}
+                  views={question.view_count}
+                  answers={question.answer_count}
+                />
+              </CardLink>
+            </Link>
           ))}
-      </div>
-      <Pagination currentPage={parseInt(page) || 1} hasMore={hasMore} />
-    </QuestionsContainer>
+        </div>
+        <Pagination currentPage={parseInt(page) || 1} hasMore={hasMore} />
+      </QuestionsContainer>
+    </>
   );
 }
 
-// This gets called on every request
 export async function getServerSideProps(context) {
   const { page } = context.query;
 
@@ -56,6 +55,7 @@ export async function getServerSideProps(context) {
       page ? `page=${page}&` : ''
     }order=desc&sort=hot&tagged=reactjs&site=stackoverflow`,
   );
+
   const result = await data.json();
 
   return {
