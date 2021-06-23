@@ -21,14 +21,14 @@ function Header() {
   return (
     <>
       <Head>
-        <title>Community Feed</title>
+        <title>E-Commerce Store</title>
         <meta
           name='description'
-          content='This is a Community Feed project build with React'
+          content='This is a E-Commerce Store build with React'
         />
       </Head>
       <HeaderWrapper>
-        <Title>Community Feed</Title>
+        <Title>E-Commerce Store</Title>
       </HeaderWrapper>
     </>
   );
