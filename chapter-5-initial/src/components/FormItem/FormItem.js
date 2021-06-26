@@ -22,25 +22,27 @@ const Input = styled.input`
   border: 1px solid lightGrey;
 `;
 
-const FormItem = ({
+function FormItem({
   id,
   label,
   type = 'text',
   placeholder = '',
   value,
   handleOnChange,
-}) => (
-  <FormItemWrapper>
-    <Label htmlFor={id}>{label}</Label>
-    <Input
-      type={type}
-      name={id}
-      id={id}
-      placeholder={placeholder}
-      value={value}
-      onChange={handleOnChange}
-    />
-  </FormItemWrapper>
-);
+}) {
+  return (
+    <FormItemWrapper>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        type={type}
+        name={id}
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleOnChange}
+      />
+    </FormItemWrapper>
+  );
+}
 
 export default FormItem;

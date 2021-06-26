@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import HotelItem from '../components/HotelItem/HotelItem';
 import HotelsContext from '../context/HotelsContext';
@@ -17,8 +17,7 @@ const HotelLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Hotels = () => {
-  const history = useHistory();
+function Hotels() {
   const { loading, error, hotels, fetchHotels } = useContext(HotelsContext);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const Hotels = () => {
 
   return (
     <>
-      {history && <NavBar title='Hotels' />}
+      <NavBar title='Hotels' />
       <HotelItemsWrapper>
         {loading || error ? (
           <span>{error || 'Loading...'}</span>
@@ -42,6 +41,6 @@ const Hotels = () => {
       </HotelItemsWrapper>
     </>
   );
-};
+}
 
 export default Hotels;

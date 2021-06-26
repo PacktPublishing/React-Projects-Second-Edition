@@ -23,14 +23,19 @@ const NavBarButton = styled(Button)`
   margin: 10px 5%;
 `;
 
-const NavBar = ({ goBack, title, openForm = false }) => (
-  <NavBarWrapper>
-    {goBack && <NavBarButton onClick={goBack}>{`< Go Back`}</NavBarButton>}
-    <Title>{title}</Title>
-    {openForm && (
-      <NavBarButton onClick={openForm} data-cy='addReview'>{`+ Add Review`}</NavBarButton>
-    )}
-  </NavBarWrapper>
-);
+function NavBar({ goBack, title, openForm = false }) {
+  return (
+    <NavBarWrapper>
+      {goBack && <NavBarButton onClick={goBack}>{`< Go Back`}</NavBarButton>}
+      <Title>{title}</Title>
+      {openForm && (
+        <NavBarButton
+          onClick={openForm}
+          data-cy='addReview'
+        >{`+ Add Review`}</NavBarButton>
+      )}
+    </NavBarWrapper>
+  );
+}
 
 export default NavBar;

@@ -28,16 +28,14 @@ const Title = styled.h3`
   flex-basis: 80%;
 `;
 
-const Lists = () => {
+function Lists() {
   let history = useHistory();
-  
-  // const { loading, error, data } = useContext(ListsContext);
+
   const { loading, error, lists, fetchLists } = useContext(ListsContext);
 
-
   useEffect(() => {
-    !lists.length && fetchLists()
-  }, [lists])
+    !lists.length && fetchLists();
+  }, [lists]);
 
   return (
     <>
@@ -55,6 +53,6 @@ const Lists = () => {
       </ListWrapper>
     </>
   );
-};
+}
 
 export default Lists;

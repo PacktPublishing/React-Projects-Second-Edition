@@ -15,7 +15,7 @@ const ReviewsItemWrapper = styled.div`
   margin: 2% 5%;
 `;
 
-const HotelDetail = () => {
+function HotelDetail() {
   let history = useHistory();
   const { hotelId } = useParams();
 
@@ -49,6 +49,6 @@ const HotelDetail = () => {
       </ReviewsItemWrapper>
     </>
   );
-};
+}
 
 export default HotelDetail;

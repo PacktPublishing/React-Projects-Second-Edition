@@ -22,12 +22,14 @@ const Total = styled.span`
   text-align: right;
 `;
 
-const ListItem = ({ data }) => (
-  <ListItemWrapper>
-    <Title>{data.title}</Title>
-    <Total>{`Quantity: ${data.quantity}`}</Total>
-    <Total>{`$ ${data.price}`}</Total>
-  </ListItemWrapper>
-);
+function ListItem({ data }) {
+  return (
+    <ListItemWrapper>
+      <Title>{data.title}</Title>
+      <Total>{`Quantity: ${data.quantity}`}</Total>
+      <Total>{`$ ${data.price}`}</Total>
+    </ListItemWrapper>
+  );
+}
 
 export default ListItem;

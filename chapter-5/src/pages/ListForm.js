@@ -18,7 +18,7 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = () => {
+function ListForm() {
   let history = useHistory();
   const { listId } = useParams();
 
@@ -78,4 +78,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ListForm;

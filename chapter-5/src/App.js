@@ -5,9 +5,15 @@ import Header from './components/Header/Header';
 import { ListsContextProvider } from './context/ListsContext';
 import { ItemsContextProvider } from './context/ItemsContext';
 
-const Lists = lazy(() => import(/* webpackChunkName: "Lists" */ './pages/Lists'));
-const ListDetail = lazy(() => import(/* webpackChunkName: "ListDetail" */ './pages/ListDetail'));
-const ListForm = lazy(() => import(/* webpackChunkName: "ListForm" */ './pages/ListForm'));
+const Lists = lazy(() =>
+  import(/* webpackChunkName: "Lists" */ './pages/Lists'),
+);
+const ListDetail = lazy(() =>
+  import(/* webpackChunkName: "ListDetail" */ './pages/ListDetail'),
+);
+const ListForm = lazy(() =>
+  import(/* webpackChunkName: "ListForm" */ './pages/ListForm'),
+);
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,32 +31,34 @@ const AppWrapper = styled.div`
   text-align: center;
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <AppWrapper>
-      <Router>
-        <Header />
-        <Suspense fallback={<div>Loading...</div>}>
-          <ListsContextProvider>
-            <ItemsContextProvider>
-              <Switch>
-                <Route exact path='/'>
-                  <Lists />
-                </Route>
-                <Route path='/list/:listId/new'>
-                  <ListForm />
-                </Route>
-                <Route path='/list/:listId'>
-                  <ListDetail />
-                </Route>
-              </Switch>
-            </ItemsContextProvider>
-          </ListsContextProvider>
-        </Suspense>
-      </Router>
-    </AppWrapper>
-  </>
-);
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <AppWrapper>
+        <Router>
+          <Header />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ListsContextProvider>
+              <ItemsContextProvider>
+                <Switch>
+                  <Route exact path='/'>
+                    <Lists />
+                  </Route>
+                  <Route path='/list/:listId/new'>
+                    <ListForm />
+                  </Route>
+                  <Route path='/list/:listId'>
+                    <ListDetail />
+                  </Route>
+                </Switch>
+              </ItemsContextProvider>
+            </ListsContextProvider>
+          </Suspense>
+        </Router>
+      </AppWrapper>
+    </>
+  );
+}
 
 export default App;

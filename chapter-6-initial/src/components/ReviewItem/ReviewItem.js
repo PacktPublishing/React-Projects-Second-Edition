@@ -26,14 +26,16 @@ const Description = styled.div`
   text-align: left;
 `;
 
-const ReviewItem = ({ data }) => (
-  <ReviewItemWrapper>
-    <Title>
-      {data.title}
-      <Rating>{`Rating: ${data.rating}`}</Rating>
-    </Title>
-    <Description>{data.description}</Description>
-  </ReviewItemWrapper>
-);
+function ReviewItem({ data }) {
+  return (
+    <ReviewItemWrapper>
+      <Title>
+        {data.title}
+        <Rating>{`Rating: ${data.rating}`}</Rating>
+      </Title>
+      <Description>{data.description}</Description>
+    </ReviewItemWrapper>
+  );
+}
 
 export default ReviewItem;

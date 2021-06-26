@@ -18,7 +18,7 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const ReviewForm = () => {
+function ReviewForm() {
   let history = useHistory();
   const { hotelId } = useParams();
 

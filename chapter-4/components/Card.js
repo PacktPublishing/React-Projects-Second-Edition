@@ -20,11 +20,13 @@ const Count = styled.span`
   color: darkGray;
 `;
 
-const Card = ({ title, views, answers }) => (
-  <CardWrapper>
-    <Title>{title}</Title>
-    <Count>{`Views: ${views} | Answers: ${answers}`}</Count>
-  </CardWrapper>
-);
+function Card({ title, views, answers }) {
+  return (
+    <CardWrapper>
+      <Title>{title}</Title>
+      <Count>{`Views: ${views} | Answers: ${answers}`}</Count>
+    </CardWrapper>
+  );
+}
 
 export default Card;

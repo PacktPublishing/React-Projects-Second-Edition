@@ -13,7 +13,7 @@ const ListItemWrapper = styled.div`
   margin: 2% 5%;
 `;
 
-const ListDetail = () => {
+function ListDetail() {
   let history = useHistory();
   const { listId } = useParams();
 
@@ -46,6 +46,6 @@ const ListDetail = () => {
       </ListItemWrapper>
     </>
   );
-};
+}
 
 export default ListDetail;

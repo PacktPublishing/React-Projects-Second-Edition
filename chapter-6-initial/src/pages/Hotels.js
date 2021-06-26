@@ -17,7 +17,7 @@ const HotelLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Hotels = ({ history }) => {
+function Hotels() {
   const { loading, error, hotels, fetchHotels } = useContext(HotelsContext);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Hotels = ({ history }) => {
 
   return (
     <>
-      {history && <NavBar title='Your Lists' />}
+      <NavBar title='Hotels' />
       <HotelItemsWrapper>
         {loading || error ? (
           <span>{error || 'Loading...'}</span>
@@ -41,6 +41,6 @@ const Hotels = ({ history }) => {
       </HotelItemsWrapper>
     </>
   );
-};
+}
 
 export default Hotels;

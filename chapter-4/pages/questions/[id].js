@@ -11,10 +11,6 @@ const QuestionDetailContainer = styled.div`
   margin: 5%;
 `;
 
-const CardLink = styled.a`
-  text-decoration: none;
-`;
-
 function QuestionDetail() {
   const router = useRouter();
   const { id } = router.query;

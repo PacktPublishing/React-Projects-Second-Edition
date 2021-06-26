@@ -24,30 +24,32 @@ const AppWrapper = styled.div`
   text-align: center;
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <AppWrapper>
-      <Router>
-        <Header />
-        <HotelsContextProvider>
-          <ReviewsContextProvider>
-            <Switch>
-              <Route exact path='/'>
-                <Hotels />
-              </Route>
-              <Route path='/hotel/:hotelId/new'>
-                <ReviewForm />
-              </Route>
-              <Route path='/hotel/:hotelId'>
-                <HotelDetail />
-              </Route>
-            </Switch>
-          </ReviewsContextProvider>
-        </HotelsContextProvider>
-      </Router>
-    </AppWrapper>
-  </>
-);
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <AppWrapper>
+        <Router>
+          <Header />
+          <HotelsContextProvider>
+            <ReviewsContextProvider>
+              <Switch>
+                <Route exact path='/'>
+                  <Hotels />
+                </Route>
+                <Route path='/hotel/:hotelId/new'>
+                  <ReviewForm />
+                </Route>
+                <Route path='/hotel/:hotelId'>
+                  <HotelDetail />
+                </Route>
+              </Switch>
+            </ReviewsContextProvider>
+          </HotelsContextProvider>
+        </Router>
+      </AppWrapper>
+    </>
+  );
+}
 
 export default App;

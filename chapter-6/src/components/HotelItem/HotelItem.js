@@ -20,11 +20,13 @@ const Thumbnail = styled.img`
   border-radius: 5px;
 `;
 
-const HotelItem = ({ data }) => (
-  <HotelItemWrapper>
-    <Thumbnail src={data.thumbnail} width={200} />
-    <Title>{data.title}</Title>
-  </HotelItemWrapper>
-);
+function HotelItem({ data }) {
+  return (
+    <HotelItemWrapper>
+      <Thumbnail src={data.thumbnail} width={200} />
+      <Title>{data.title}</Title>
+    </HotelItemWrapper>
+  );
+}
 
 export default HotelItem;

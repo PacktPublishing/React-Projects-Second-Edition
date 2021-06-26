@@ -22,26 +22,27 @@ const AppWrapper = styled.div`
   text-align: center;
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <AppWrapper>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path='/'>
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <AppWrapper>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path='/'>
               <Lists />
-          </Route>
-          <Route path='/list/new'>
+            </Route>
+            <Route path='/list/new'>
               <ListForm />
-          </Route>
-          <Route path='/list/:listId'>
+            </Route>
+            <Route path='/list/:listId'>
               <ListDetail />
-          </Route>
-        </Switch>
-      </Router>
-    </AppWrapper>
-  </>
-);
-
+            </Route>
+          </Switch>
+        </Router>
+      </AppWrapper>
+    </>
+  );
+}
 export default App;

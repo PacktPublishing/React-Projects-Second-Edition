@@ -15,10 +15,12 @@ const Title = styled.h1`
   pointer-events: none;
 `;
 
-const Header = () => (
-  <HeaderWrapper>
-    <Title>Personal Shopping List</Title>
-  </HeaderWrapper>
-);
+function Header() {
+  return (
+    <HeaderWrapper>
+      <Title>Personal Shopping List</Title>
+    </HeaderWrapper>
+  );
+}
 
 export default Header;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import FormItem from '../components/FormItem/FormItem';
 import Button from '../components/Button/Button';
@@ -16,9 +16,10 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = () => {
+function ListForm() {
   let history = useHistory();
-  
+  const { listId } = useParams();
+
   return (
     <>
       {history && <NavBar goBack={() => history.goBack()} title={`Add Item`} />}
@@ -37,6 +38,6 @@ const Form = () => {
       </FormWrapper>
     </>
   );
-};
+}
 
-export default Form;
+export default ListForm;

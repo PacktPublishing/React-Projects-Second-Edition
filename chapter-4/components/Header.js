@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 
 const HeaderWrapper = styled.div`
-  background-color: royalBlue;
+  background-color: orange;
   height: 100%;
   display: flex;
   flex-direction: column;
