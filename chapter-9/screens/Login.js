@@ -35,6 +35,7 @@ export default function Login() {
           value={password}
           placeholder='Your password'
           textContentType='password'
+          secureTextEntry
         />
         <Button onPress={() => loginUser(username, password)} label='login' />
       </View>

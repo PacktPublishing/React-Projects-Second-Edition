@@ -23,6 +23,7 @@ export default function Login() {
         value={password}
         placeholder='Your password'
         textContentType='password'
+        secureTextEntry
       />
       <TouchableOpacity onPress={() => loginUser(username, password)}>
         <View style={styles.button}>
