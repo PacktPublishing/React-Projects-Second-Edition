@@ -1,25 +1,11 @@
 import { useState, useEffect } from 'react';
-import List from '../components/List';
 import Link from '../components/Link';
+import List from '../components/List';
 import './Profile.css';
 
 function Profile({ userName }) {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetch(`https://api.github.com/users/${userName}`);
-      const result = await data.json();
-
-      if (result) {
-        setProfile(result);
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, [userName]);
 
   const items = [
     {
@@ -36,6 +22,20 @@ function Profile({ userName }) {
     { field: 'email', value: profile.email },
     { field: 'bio', value: profile.bio },
   ];
+
+  useEffect(() => {
+    async function fetchData() {
+      const profile = await fetch(`https://api.github.com/users/${userName}`);
+      const result = await profile.json();
+
+      if (result) {
+        setProfile(result);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [userName]);
 
   return (
     <div className='Profile-container'>

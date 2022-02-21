@@ -7,7 +7,6 @@ function Character(character) {
           alt={character.name}
           className='card-img-top'
         />
-
         <div className='card-body'>
           <h3 className='card-title'>{character.name}</h3>
           <p>{`Origin: ${character.origin && character.origin.name}`}</p>

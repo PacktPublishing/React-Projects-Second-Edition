@@ -1,29 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import logo from '../assets/logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Profile from './pages/Profile';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import logo from './assets/logo.svg';
+import './App.css';
 
 function App() {
   return (
     <div className='App'>
-      <Router>
+      <BrowserRouter>
         <Header logo={logo} />
-        <Switch>
-          <Route exact path='/'>
-            <Profile userName='octocat' />
-          </Route>
-          <Route path='/projects/:name'>
-            <ProjectDetail userName='octocat' />
-          </Route>
-          <Route path='/projects'>
-            <Projects userName='octocat' />
-          </Route>
-        </Switch>
-      </Router>
+        <Routes>
+          <Route path='/' element={<Profile userName='octocat' />} />
+          <Route path='/projects' element={<Projects userName='octocat' />} />
+          <Route
+            path='/projects/:name'
+            element={<ProjectDetail userName='octocat' />}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

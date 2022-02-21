@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import List from '../components/List';
-import Link from '../components/Link';
 import { useParams } from 'react-router-dom';
 
-function ProjectDetail({ userName }) {
+function Project({ userName }) {
   const [loading, setLoading] = useState(false);
   const [project, setProject] = useState([]);
   const { name } = useParams();
@@ -26,33 +24,12 @@ function ProjectDetail({ userName }) {
     }
   }, [userName, name]);
 
-  const items = [
-    {
-      field: 'html_url',
-      value: <Link url={project.html_url} title={project.html_url} />,
-    },
-    {
-      field: 'description',
-      value: project.description,
-    },
-    {
-      field: 'created_at',
-      value: project.created_at,
-    },
-  ];
-
   return (
     <div className='Project-container'>
       <h2>Project: {project.name}</h2>
-      {loading ? (
-        <span>Loading...</span>
-      ) : (
-        <div>
-          <List items={items} />
-        </div>
-      )}
+      {loading ? <span>Loading...</span> : <div></div>}
     </div>
   );
 }
 
-export default ProjectDetail;
+export default Project;

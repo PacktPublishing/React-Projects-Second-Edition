@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import Character from './Character';
 
 function List() {
-  const [loading, setLoading] = useState(true);
   const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {

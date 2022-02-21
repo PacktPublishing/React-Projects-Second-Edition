@@ -20,14 +20,8 @@
   color: white;
 }
 
-.App-header > nav {
-    margin-bottom: 10px;
-}
-
-
-.App-header > nav > .App-link {
-  margin-right: 10px;
-  margin-bottom: 10px;
+.App-link {
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -37,4 +31,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-header > nav {
+  margin-bottom: 10px;
+}
+
+.App-header > nav > .App-link {
+  margin-right: 10px;
 }

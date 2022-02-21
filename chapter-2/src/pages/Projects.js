@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import Link from '../components/Link';
 import List from '../components/List';
 
 function Projects({ userName }) {
-  const [loading, setLoading] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -22,13 +23,6 @@ function Projects({ userName }) {
     fetchData();
   }, [userName]);
 
-  const items = projects.map((project) => ({
-    field: project.name,
-    value: (
-      <RouterLink to={`/projects/${project.name}`}>Open project</RouterLink>
-    ),
-  }));
-
   return (
     <div className='Projects-container'>
       <h2>Projects</h2>
@@ -36,7 +30,16 @@ function Projects({ userName }) {
         <span>Loading...</span>
       ) : (
         <div>
-          <List items={items} />
+          <List
+            items={projects.map((project) => ({
+              field: project.name,
+              value: (
+                <RouterLink to={`/projects/${project.name}`}>
+                  Open project
+                </RouterLink>
+              ),
+            }))}
+          />
         </div>
       )}
     </div>
