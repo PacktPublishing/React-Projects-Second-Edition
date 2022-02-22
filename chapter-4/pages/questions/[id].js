@@ -16,7 +16,6 @@ function QuestionDetail() {
   const { id } = router.query;
 
   const [loading, setLoading] = useState(false);
-
   const [question, setQuestion] = useState({});
 
   useEffect(() => {
@@ -29,7 +28,6 @@ function QuestionDetail() {
 
       if (result) {
         setQuestion(result.items[0]);
-
         setLoading(false);
       }
     }
@@ -38,22 +36,23 @@ function QuestionDetail() {
   }, [id]);
 
   return (
-    <>
-      <Head>
-        <title>{question.title}</title>
-      </Head>
-      <QuestionDetailContainer>
-        {loading ? (
-          <span>Loading...</span>
-        ) : (
+    <QuestionDetailContainer>
+      {loading ? (
+        <span>Loading...</span>
+      ) : (
+        <>
+          <Head>
+            <title>{question.title}</title>
+          </Head>
+
           <Card
             title={question.title}
             views={question.view_count}
             answers={question.answers_count}
           />
-        )}
-      </QuestionDetailContainer>
-    </>
+        </>
+      )}
+    </QuestionDetailContainer>
   );
 }
 

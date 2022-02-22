@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Lane from '../../components/Lane/Lane';
 import useDataFetching from '../../hooks/useDataFetching';
+import Lane from '../../components/Lane/Lane';
 import './Board.css';
 
 const lanes = [
@@ -20,8 +20,9 @@ function onDragOver(e) {
 
 function Board() {
   const [loading, error, data] = useDataFetching(
-    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/tasks',
+    `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/tasks`,
   );
+
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {

@@ -1,0 +1,19 @@
+.Lane-wrapper {
+  text-align: left;
+  padding: 0;
+  background: lightGray;
+  border-radius: 20px;
+  min-height: 50vh;
+  width: 20vw;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 5%;
+  }
+}
+
+.Lane-wrapper h2 {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid darkGray;
+}

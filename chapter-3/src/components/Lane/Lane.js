@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Task from '../Task/Task';
+import styled from 'styled-components';
 
 const LaneWrapper = styled.div`
   text-align: left;
