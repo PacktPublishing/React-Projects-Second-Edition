@@ -1,12 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
-import { HotelsContextProvider } from './context/HotelsContext';
-import { ReviewsContextProvider } from './context/ReviewsContext';
-
 import Hotels from './pages/Hotels';
 import HotelDetail from './pages/HotelDetail';
 import ReviewForm from './pages/ReviewForm';
+import AppContext from './context/AppContext';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,24 +27,16 @@ function App() {
     <>
       <GlobalStyle />
       <AppWrapper>
-        <Router>
+        <BrowserRouter>
           <Header />
-          <HotelsContextProvider>
-            <ReviewsContextProvider>
-              <Switch>
-                <Route exact path='/'>
-                  <Hotels />
-                </Route>
-                <Route path='/hotel/:hotelId/new'>
-                  <ReviewForm />
-                </Route>
-                <Route path='/hotel/:hotelId'>
-                  <HotelDetail />
-                </Route>
-              </Switch>
-            </ReviewsContextProvider>
-          </HotelsContextProvider>
-        </Router>
+          <AppContext>
+              <Routes>
+                <Route path='/' element={<Hotels />} />
+                <Route path='/hotel/:hotelId' element={<HotelDetail />} />
+                <Route path='/hotel/:hotelId/new' element={<ReviewForm />} />
+              </Routes>
+            </AppContext>
+        </BrowserRouter>
       </AppWrapper>
     </>
   );

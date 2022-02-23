@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import Hotels from './Hotels';
 import HotelsContext from '../context/HotelsContext';
-import { BrowserRouter } from 'react-router-dom';
 
 test('The Hotels component should render', async () => {
   const mockFunction = jest.fn();
@@ -34,16 +34,9 @@ test('The Hotels component should render a list of hotels', async () => {
           loading: false,
           error: '',
           hotels: [
-            {
-              id: 1,
-              title: 'Test hotel 1',
-              thumbnail: 'https://picsum.photos/id/369/400/400',
-            },
-            {
-              id: 2,
-              title: 'Test hotel 2',
-              thumbnail: 'https://picsum.photos/id/1040/400/400',
-            },
+            { id: 1, title: 'Test hotel 1', thumbnail: '' },
+
+            { id: 2, title: 'Test hotel 2', thumbnail: '' },
           ],
           fetchHotels: jest.fn(),
         }}
@@ -54,7 +47,6 @@ test('The Hotels component should render a list of hotels', async () => {
   );
 
   render(<Hotels />, { wrapper });
-
   expect(screen.queryByText('Loading...')).toBeNull();
   expect(screen.getAllByRole('link').length).toBe(2);
 });

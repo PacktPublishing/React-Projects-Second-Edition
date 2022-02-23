@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import FormItem from '../components/FormItem/FormItem';
 import Button from '../components/Button/Button';
@@ -19,7 +19,7 @@ const SubmitButton = styled(Button)`
 `;
 
 function ReviewForm() {
-  let history = useHistory();
+  let navigate = useNavigate();
   const { hotelId } = useParams();
 
   const [title, setTitle] = useState('');
@@ -40,12 +40,12 @@ function ReviewForm() {
       });
     }
 
-    history.push(`/hotel/${hotelId}`);
+    navigate(`/hotel/${hotelId}`);
   }
 
   return (
     <>
-      {history && <NavBar goBack={() => history.goBack()} title={`Add Review`} />}
+      {navigate && <NavBar goBack={() => navigate(-1)} title={`Add Review`} />}
       <FormWrapper>
         <form onSubmit={onSubmit}>
           <FormItem
@@ -75,6 +75,6 @@ function ReviewForm() {
       </FormWrapper>
     </>
   );
-};
+}
 
 export default ReviewForm;

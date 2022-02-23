@@ -1,11 +1,11 @@
-import { ListsContextProvider } from './ListsContext';
-import { ItemsContextProvider } from './ItemsContext';
+import { HotelsContextProvider } from './HotelsContext';
+import { ReviewsContextProvider } from './ReviewsContext';
 
 const AppContext = ({ children }) => {
   return (
-    <ListsContextProvider>
-      <ItemsContextProvider>{children}</ItemsContextProvider>
-    </ListsContextProvider>
+    <HotelsContextProvider>
+      <ReviewsContextProvider>{children}</ReviewsContextProvider>
+    </HotelsContextProvider>
   );
 };
 

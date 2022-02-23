@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 
 import HotelsContext from '../context/HotelsContext';
@@ -16,7 +16,7 @@ const ReviewsItemWrapper = styled.div`
 `;
 
 function HotelDetail() {
-  let history = useHistory();
+  let navigate = useNavigate();
   const { hotelId } = useParams();
 
   const { loading, error, hotel, fetchHotel } = useContext(HotelsContext);
@@ -32,10 +32,10 @@ function HotelDetail() {
 
   return (
     <>
-      {history && (
+      {navigate && (
         <NavBar
-          goBack={() => history.goBack()}
-          openForm={() => history.push(`./${hotelId}/new`)}
+          goBack={() => navigate(-1)}
+          openForm={() => navigate(`/hotel/${hotelId}/new`)}
           title={hotel && hotel.title}
         />
       )}
