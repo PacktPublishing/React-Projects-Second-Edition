@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Lists from './pages/Lists';
 import ListDetail from './pages/ListDetail';
@@ -27,20 +27,14 @@ function App() {
     <>
       <GlobalStyle />
       <AppWrapper>
-        <Router>
+        <BrowserRouter>
           <Header />
-          <Switch>
-            <Route exact path='/'>
-              <Lists />
-            </Route>
-            <Route path='/list/new'>
-              <ListForm />
-            </Route>
-            <Route path='/list/:listId'>
-              <ListDetail />
-            </Route>
-          </Switch>
-        </Router>
+          <Routes>
+            <Route path='/' element={<Lists />} />
+            <Route path='/list/:listId/new' element={<ListForm />} />
+            <Route path='/list/:listId' element={<ListDetail />} />
+          </Routes>
+        </BrowserRouter>
       </AppWrapper>
     </>
   );

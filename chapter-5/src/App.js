@@ -1,19 +1,12 @@
 import { Suspense, lazy } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
-import { ListsContextProvider } from './context/ListsContext';
-import { ItemsContextProvider } from './context/ItemsContext';
+import AppContext from './context/AppContext';
 
-const Lists = lazy(() =>
-  import(/* webpackChunkName: "Lists" */ './pages/Lists'),
-);
-const ListDetail = lazy(() =>
-  import(/* webpackChunkName: "ListDetail" */ './pages/ListDetail'),
-);
-const ListForm = lazy(() =>
-  import(/* webpackChunkName: "ListForm" */ './pages/ListForm'),
-);
+const Lists = lazy(() => import('./pages/Lists'));
+const ListDetail = lazy(() => import('./pages/ListDetail'));
+const ListForm = lazy(() => import('./pages/ListForm'));
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,29 +29,20 @@ function App() {
     <>
       <GlobalStyle />
       <AppWrapper>
-        <Router>
+        <BrowserRouter>
           <Header />
           <Suspense fallback={<div>Loading...</div>}>
-            <ListsContextProvider>
-              <ItemsContextProvider>
-                <Switch>
-                  <Route exact path='/'>
-                    <Lists />
-                  </Route>
-                  <Route path='/list/:listId/new'>
-                    <ListForm />
-                  </Route>
-                  <Route path='/list/:listId'>
-                    <ListDetail />
-                  </Route>
-                </Switch>
-              </ItemsContextProvider>
-            </ListsContextProvider>
+            <AppContext>
+              <Routes>
+                <Route path='/' element={<Lists />} />
+                <Route path='/list/:listId/new' element={<ListForm />} />
+                <Route path='/list/:listId' element={<ListDetail />} />
+              </Routes>
+            </AppContext>
           </Suspense>
-        </Router>
+        </BrowserRouter>
       </AppWrapper>
     </>
   );
 }
-
 export default App;

@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import FormItem from '../components/FormItem/FormItem';
 import Button from '../components/Button/Button';
@@ -19,7 +19,7 @@ const SubmitButton = styled(Button)`
 `;
 
 function ListForm() {
-  let history = useHistory();
+  let navigate = useNavigate();
   const { listId } = useParams();
 
   const [title, setTitle] = useState('');
@@ -40,12 +40,12 @@ function ListForm() {
       });
     }
 
-    history.push(`/list/${listId}`);
+    navigate(`/list/${listId}`);
   }
 
   return (
     <>
-      {history && <NavBar goBack={() => history.goBack()} title={`Add Item`} />}
+      {navigate && <NavBar goBack={() => navigate(-1)} title={`Add Item`} />}
       <FormWrapper>
         <form onSubmit={onSubmit}>
           <FormItem
@@ -76,6 +76,6 @@ function ListForm() {
       </FormWrapper>
     </>
   );
-};
+}
 
 export default ListForm;

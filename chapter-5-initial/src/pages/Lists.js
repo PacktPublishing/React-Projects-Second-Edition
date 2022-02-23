@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useDataFetching from '../hooks/useDataFetching';
 import NavBar from '../components/NavBar/NavBar';
 
@@ -28,15 +28,15 @@ const Title = styled.h3`
 `;
 
 const Lists = () => {
-  let history = useHistory();
-  
+  let navigate = useNavigate();
+
   const [loading, error, data] = useDataFetching(
     'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists',
   );
 
   return (
     <>
-      {history && <NavBar title='Your Lists' />}
+      {navigate && <NavBar title='Your Lists' />}
       <ListWrapper>
         {loading || error ? (
           <span>{error || 'Loading...'}</span>

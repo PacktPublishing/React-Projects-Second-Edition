@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import ListsContext from '../context/ListsContext';
 
@@ -28,18 +28,18 @@ const Title = styled.h3`
   flex-basis: 80%;
 `;
 
-function Lists() {
-  let history = useHistory();
+const Lists = () => {
+  let navigate = useNavigate();
 
-  const { loading, error, lists, fetchLists } = useContext(ListsContext);
-
-  useEffect(() => {
-    !lists.length && fetchLists();
-  }, [lists]);
-
+   const { loading, error, lists, fetchLists } = useContext(ListsContext);
+ 
+   useEffect(() => {
+     !lists.length && fetchLists()
+   }, [lists])
+  
   return (
     <>
-      {history && <NavBar title='Your Lists' />}
+      {navigate && <NavBar title='Your Lists' />}
       <ListWrapper>
         {loading || error ? (
           <span>{error || 'Loading...'}</span>
@@ -53,6 +53,6 @@ function Lists() {
       </ListWrapper>
     </>
   );
-}
+};
 
 export default Lists;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useDataFetching from '../hooks/useDataFetching';
 import NavBar from '../components/NavBar/NavBar';
 import ListItem from '../components/ListItem/ListItem';
@@ -13,7 +13,7 @@ const ListItemWrapper = styled.div`
 `;
 
 function ListDetail() {
-  let history = useHistory();
+  let navigate = useNavigate();
   const { listId } = useParams();
 
   const [loading, error, data] = useDataFetching(
@@ -30,10 +30,10 @@ function ListDetail() {
 
   return (
     <>
-      {history && (
+      {navigate && (
         <NavBar
-          goBack={() => history.goBack()}
-          openForm={() => history.push(`./new`)}
+          goBack={() => navigate(-1)}
+          openForm={() => navigate(`/list/${listId}//new`)}
         />
       )}
       <ListItemWrapper>

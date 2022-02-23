@@ -28,8 +28,8 @@ const reducer = (state, action) => {
         ...state,
         items: [...state.items, action.payload],
         loading: false,
-        isAdded: true,
       };
+
     default:
       return state;
   }

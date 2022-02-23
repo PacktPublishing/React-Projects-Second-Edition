@@ -37,6 +37,7 @@ const reducer = (state, action) => {
         loading: false,
         error: action.payload,
       };
+
     default:
       return state;
   }
@@ -60,20 +61,19 @@ export const ListsContextProvider = ({ children }) => {
     }
   }
 
-  async function fetchList(listId) {
-    try {
-      const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}`,
-      );
-      const result = await data.json();
-
-      if (result) {
-        dispatch({ type: 'GET_LIST_SUCCESS', payload: result });
-      }
-    } catch (e) {
-      dispatch({ type: 'GET_LIST_ERROR', payload: e.message });
-    }
-  }
+   async function fetchList(listId) {
+       try {
+         const data = await fetch(`https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}`);
+         const result = await data.json();
+     
+         if (result) {
+           dispatch({ type: 'GET_LIST_SUCCESS', payload: result });
+         }
+       } catch (e) {
+         dispatch({ type: 'GET_LIST_ERROR', payload: e.message });
+       }
+     }
+    
 
   return (
     <ListsContext.Provider value={{ ...state, fetchLists, fetchList }}>
