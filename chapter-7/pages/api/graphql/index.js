@@ -1,5 +1,7 @@
-import { ApolloServer, gql, MockList } from 'apollo-server-micro';
-import { isTokenValid, loginUser } from '../../../utils/authentication';
+import { graphqlHTTP } from 'express-graphql';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { addMocksToSchema } from '@graphql-tools/mock';
+import { loginUser, isTokenValid } from '../../../utils/authentication';
 
 let cart = {
   count: 0,
@@ -7,7 +9,7 @@ let cart = {
   complete: false,
 };
 
-const typeDefs = gql`
+const typeDefs = /* GraphQL */ `
   type Product {
     id: Int!
     title: String!
@@ -70,45 +72,70 @@ const resolvers = {
       cart = {
         ...cart,
         count: cart.count + 1,
-        products: () => new MockList(cart.count),
+        products: [
+          ...cart.products,
+          {
+            productId,
+            title: 'My product',
+            thumbnail: 'https://picsum.photos/400/400',
+            price: (Math.random() * 99.0 + 1.0).toFixed(2),
+            category: null,
+          },
+        ],
       };
 
       return cart;
     },
     completeCart: (_, {}, { token }) => {
-      console.log({ token });
-
       if (token && isTokenValid(token)) {
         cart = {
           count: 0,
           products: [],
           complete: true,
         };
-  
+
         return cart;
       }
     },
   },
 };
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+const executableSchema = addMocksToSchema({
+  schema: makeExecutableSchema({
+    typeDefs,
+  }),
   context: ({ req }) => {
     const token = req.headers.authorization || '';
- 
-    return { token }
+
+    return { token };
   },
-  mocks: mocks,
-  mockEntireSchema: false,
+  mocks,
+  resolvers,
 });
 
-const handler = server.createHandler({ path: '/api/graphql' });
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+      return resolve(result);
+    });
+  });
+}
+
+async function handler(req, res) {
+  const result = await runMiddleware(
+    req,
+    res,
+    graphqlHTTP({
+      schema: executableSchema,
+      graphiql: true,
+    }),
+  );
+
+  res.json(result);
+}
 
 export default handler;

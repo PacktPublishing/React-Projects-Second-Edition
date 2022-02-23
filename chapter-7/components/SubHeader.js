@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import Button from './Button';
 import CartButton from './CartButton';
+import Button from './Button';
 
 const SubHeaderWrapper = styled.div`
   display: flex;

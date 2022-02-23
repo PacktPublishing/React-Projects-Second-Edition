@@ -35,20 +35,17 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // uri: 'http://localhost:3000/api/graphql/',
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <ApolloProvider client={client}>
-        <GlobalStyle />
-        <Header />
-        <Component {...pageProps} />
-      </ApolloProvider>
-    </>
+    <ApolloProvider client={client}>
+      <GlobalStyle />
+      <Header />
+      <Component {...pageProps} />
+    </ApolloProvider>
   );
 }
 

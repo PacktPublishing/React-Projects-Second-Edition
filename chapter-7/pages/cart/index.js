@@ -44,6 +44,7 @@ const COMPLETE_CART = gql`
 function Cart() {
   const { loading, data } = useQuery(GET_CART);
   const [completeCard] = useMutation(COMPLETE_CART);
+  const route = useRouter();
 
   return (
     <>
@@ -69,6 +70,8 @@ function Cart() {
 
                   if (isAuthenticated) {
                     completeCard();
+                    alert('Thanks! Cart is emptied');
+                    route.push('/');
                   }
                 }}
               >

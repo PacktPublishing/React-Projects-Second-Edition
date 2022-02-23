@@ -28,6 +28,7 @@ function Products() {
   return (
     <>
       <SubHeader title='Available products' goToCart />
+
       {loading ? (
         <span>Loading...</span>
       ) : (
@@ -41,6 +42,6 @@ function Products() {
       )}
     </>
   );
-};
+}
 
 export default Products;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import Button from '../../components/Button';
 import FormItem from '../../components/FormItem';
 import SubHeader from '../../components/SubHeader';
@@ -41,7 +41,7 @@ function Login() {
       <SubHeader title='Login' />
       <FormWrapper>
         <form
-          onSubmit={async (e) => {
+          onSubmit={(e) => {
             e.preventDefault();
             loginUser({ variables: { username, password } });
           }}
