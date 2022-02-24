@@ -1,39 +1,38 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TapGestureHandler, State } from 'react-native-gesture-handler';
+import {
+  LongPressGestureHandler,
+  TapGestureHandler,
+  State,
+} from 'react-native-gesture-handler';
 
 export default function Home() {
   const navigation = useNavigation();
-  const doubleTapRef = useRef(null);
 
-  function onDoubleTap(e) {
+  function onLongPress(e) {
     if (e.nativeEvent.state === State.ACTIVE) {
       navigation.navigate('Game');
     }
   }
 
-  function onSingleTap(e) {
+  function onTap(e) {
     if (e.nativeEvent.state === State.ACTIVE) {
-      Alert.alert('Double tap to start the game');
+      Alert.alert('Long press to start the game');
     }
   }
 
   return (
     <View style={styles.container}>
-      <TapGestureHandler
-        onHandlerStateChange={onSingleTap}
-        waitFor={doubleTapRef}
-      >
-        <TapGestureHandler
-          ref={doubleTapRef}
-          onHandlerStateChange={onDoubleTap}
-          numberOfTaps={2}
+      <TapGestureHandler onHandlerStateChange={onTap}>
+        <LongPressGestureHandler
+          onHandlerStateChange={onLongPress}
+          minDurationMs={600}
         >
           <View style={styles.button}>
             <Text style={styles.buttonText}>Start game!</Text>
           </View>
-        </TapGestureHandler>
+        </LongPressGestureHandler>
       </TapGestureHandler>
     </View>
   );

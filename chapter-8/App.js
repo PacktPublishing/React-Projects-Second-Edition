@@ -1,20 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  createStackNavigator,
-  HeaderBackButton,
-} from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HeaderBackButton } from '@react-navigation/elements';
 import Home from './screens/Home';
 import Game from './screens/Game';
 import Result from './screens/Result';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar style='auto' />
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Game' component={Game} />
@@ -32,7 +30,6 @@ export default function App() {
           })}
         />
       </Stack.Navigator>
-      <StatusBar style='auto' />
     </NavigationContainer>
   );
 }

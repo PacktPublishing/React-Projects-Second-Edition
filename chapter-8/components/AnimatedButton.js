@@ -4,7 +4,7 @@ import {
   Text,
   TouchableWithoutFeedback,
   Animated,
-  Easing,
+  Easing
 } from 'react-native';
 
 export default function AnimatedButton({ action, onPress }) {
@@ -15,9 +15,9 @@ export default function AnimatedButton({ action, onPress }) {
       onPress={() => {
         Animated.timing(opacity.current, {
           toValue: 0.2,
-          duration: 800,
+          duration: 400,
           useNativeDriver: true,
-          easing: Easing.linear(),
+          easing: Easing.linear(),  
         }).start(() => onPress());
       }}
     >

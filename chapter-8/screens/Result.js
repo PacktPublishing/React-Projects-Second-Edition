@@ -15,7 +15,6 @@ export default function Result() {
           autoPlay
           style={{
             width: 300,
-
             height: 300,
           }}
           source={require('../assets/winner.json')}

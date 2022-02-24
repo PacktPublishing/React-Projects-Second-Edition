@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  TouchableHighlight,
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-} from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AnimatedButton from '../components/AnimatedButton';
 
@@ -21,8 +15,6 @@ export default function Game() {
       const winner =
         (choice === 'higher' && score > baseNumber) ||
         (choice === 'lower' && baseNumber > score);
-
-      Alert.alert(`You've ${winner ? 'won' : 'lost'}`, `You scored: ${score}`);
 
       navigation.navigate('Result', { winner });
     }
