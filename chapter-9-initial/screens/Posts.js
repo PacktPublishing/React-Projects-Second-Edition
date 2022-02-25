@@ -21,6 +21,7 @@ export default function Posts() {
         posts &&
         posts.map((post) => (
           <TouchableOpacity
+            key={post.id}
             onPress={() =>
               navigation.navigate('PostDetail', { postId: post.id })
             }

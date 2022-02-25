@@ -1,14 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useEffect } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import PostsContext from '../context/PostsContext';
-import PostItem from '../components/PostItem.ios';
+import PostItem from '../components/PostItem';
 
 export default function Posts() {
   const navigation = useNavigation();
@@ -20,27 +14,23 @@ export default function Posts() {
   }, [fetchPosts, posts]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {loading || error ? (
         <Text style={styles.message}>{error || 'Loading...'}</Text>
       ) : (
-        posts && (
-          <FlatList
-            data={posts}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('PostDetail', { postId: item.id })
-                }
-              >
-                <PostItem data={item} />
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        )
+        posts &&
+        posts.map((post) => (
+          <TouchableOpacity
+            key={post.id}
+            onPress={() =>
+              navigation.navigate('PostDetail', { postId: post.id })
+            }
+          >
+            <PostItem key={post.id} data={post} />
+          </TouchableOpacity>
+        ))
       )}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -52,5 +42,8 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 20,
     color: 'black',
+  },
+  list: {
+    width: '100%',
   },
 });

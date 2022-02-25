@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 20,
     borderRadius: 5,
-    // backgroundColor: 'blue',
     ...Platform.select({
       ios: {
         backgroundColor: 'blue',

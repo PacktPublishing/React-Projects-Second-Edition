@@ -1,7 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import Button from '../components/Button';
 import FormInput from '../components/FormInput';
 import UserContext from '../context/UserContext';
 
@@ -10,35 +9,36 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const { user, error, loginUser } = useContext(UserContext);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    if (user.token.length) {
-      navigation.navigate('Home', { screen: 'Posts' });
-    }
-  }, [user.token]);
+   const navigation = useNavigation();
+   
+   useEffect(() => {
+     if (user.token) {
+       navigation.navigate('Home');
+     }
+   }, [user.token]);
+  
 
   return (
     <View style={styles.container}>
-      <View style={styles.form}>
-        {error.length ? (
-          <Text style={styles.message}>Something went wrong</Text>
-        ) : null}
-        <FormInput
-          onChangeText={setUsername}
-          value={username}
-          placeholder='Your username'
-          textContentType='username'
-        />
-        <FormInput
-          onChangeText={setPassword}
-          value={password}
-          placeholder='Your password'
-          textContentType='password'
-          secureTextEntry
-        />
-        <Button onPress={() => loginUser(username, password)} label='login' />
-      </View>
+      {error.length ? <Text style={styles.message}>Something went wrong</Text> : null}
+      <FormInput
+        onChangeText={setUsername}
+        value={username}
+        placeholder='Your username'
+        textContentType='username'
+      />
+      <FormInput
+        onChangeText={setPassword}
+        value={password}
+        placeholder='Your password'
+        textContentType='password'
+        secureTextEntry
+      />
+      <TouchableOpacity onPress={() => loginUser(username, password)}>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -52,12 +52,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 20,
   },
-  form: {
-    width: '90%',
-  },
   message: {
     fontSize: 20,
     color: 'red',
     marginBottom: 20,
+  },
+  button: {
+    width: 300,
+    padding: 20,
+    borderRadius: 5,
+    backgroundColor: 'blue',
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
   },
 });

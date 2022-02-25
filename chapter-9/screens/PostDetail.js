@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import PostsContext from '../context/PostsContext';
-import PostItem from '../components/PostItem.ios';
+import PostItem from '../components/PostItem';
 
 const PostDetail = () => {
   const route = useRoute();

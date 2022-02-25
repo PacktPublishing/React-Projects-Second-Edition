@@ -10,13 +10,15 @@ export default function App() {
     <div id='Canvas-container'>
       <Canvas>
         <Controls />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-        <pointLight position={[-10, -10, -10]} />
         <Suspense fallback={null}>
           <Panorama />
           <Helicopter />
         </Suspense>
+
+        <ambientLight intensity={0.5} />
+
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+        <pointLight position={[-10, -10, -10]} />
       </Canvas>
     </div>
   );

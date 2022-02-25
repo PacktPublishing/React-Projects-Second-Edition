@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { apiUrl } = Constants.manifest.extra;
 
@@ -30,7 +30,7 @@ const reducer = (state, action) => {
         ...state,
         error: action.payload,
       };
-    case 'DELETE_USER_TOKEN':
+    case 'REMOVE_USER_TOKEN':
       return {
         ...state,
         user: {
@@ -58,7 +58,7 @@ export const UserContextProvider = ({ children }) => {
 
       if (result) {
         dispatch({ type: 'SET_USER_TOKEN', payload: result.token });
-        await AsyncStorage.setItem('token', result.token);
+        AsyncStorage.setItem('token', result.token);
       }
     } catch (e) {
       dispatch({ type: 'SET_USER_ERROR', payload: e.message });
@@ -66,12 +66,7 @@ export const UserContextProvider = ({ children }) => {
   }
 
   async function logoutUser() {
-    try {
-      await AsyncStorage.removeItem('token');
-      dispatch({ type: 'REMOVE_USER_TOKEN' });
-    } catch (e) {
-      dispatch({ type: 'SET_USER_ERROR', payload: e.message });
-    }
+    dispatch({ type: 'REMOVE_USER_TOKEN' });
   }
 
   async function getToken() {

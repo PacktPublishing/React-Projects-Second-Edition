@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    backgroundColor: 'white',
     margin: '2%',
     shadowColor: 'black',
-    backgroundColor: 'white',
     shadowOffset: {
       width: 0,
       height: 2,

@@ -27,7 +27,6 @@ export default function PostForm() {
 
   async function uploadImage() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
     if (status !== 'granted') {
       Alert.alert(
         'Sorry',
@@ -36,6 +35,7 @@ export default function PostForm() {
     } else {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
       });

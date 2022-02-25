@@ -6,31 +6,29 @@ import {
   NavigationContainer,
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+
 import Posts from './screens/Posts';
 import PostDetail from './screens/PostDetail';
 import Profile from './screens/Profile';
-import PostForm from './screens/PostForm';
 import Login from './screens/Login';
-
+import PostForm from './screens/PostForm';
 import AppContext from './context/AppContext';
 import UserContext from './context/UserContext';
 import { navigationRef } from './routing';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Home() {
   return (
     <ActionSheetProvider>
       <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: 'blue',
-          inactiveTintColor: 'gray',
-        }}
         screenOptions={({ route }) => ({
+          tabBarActiveTintColor: 'blue',
+          tabBarInactiveTintColor: 'gray',
           tabBarIcon: ({ color, size }) => {
             const iconName =
               (route.name === 'Posts' &&
@@ -48,15 +46,24 @@ function Home() {
           },
         })}
       >
-        <Stack.Screen name='Posts' component={Posts} />
+        <Stack.Screen
+          name='Posts'
+          component={Posts}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Profile'
+          component={Profile}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name='PostForm'
           component={PostForm}
           options={{
+            headerShown: false,
             tabBarLabel: 'Add post',
           }}
         />
-        <Stack.Screen name='Profile' component={Profile} />
       </Tab.Navigator>
     </ActionSheetProvider>
   );
@@ -73,6 +80,7 @@ function Navigator() {
     <NavigationContainer ref={navigationRef}>
       <StatusBar style='auto' />
       <Stack.Navigator initialRouteName={user.token.length ? 'Home' : 'Login'}>
+        <Stack.Screen name='Login' component={Login} />
         <Stack.Screen
           name='Home'
           component={Home}
@@ -81,7 +89,6 @@ function Navigator() {
           })}
         />
         <Stack.Screen name='PostDetail' component={PostDetail} />
-        <Stack.Screen name='Login' component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

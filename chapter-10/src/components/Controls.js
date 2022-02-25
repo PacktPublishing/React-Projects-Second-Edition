@@ -12,11 +12,10 @@ export default function Controls() {
     controls.maxDistance = 20;
     controls.enableZoom = true;
     controls.enablePan = true;
-
+    
     return () => {
       controls.dispose();
     };
   }, [camera, gl]);
-
   return null;
 }
