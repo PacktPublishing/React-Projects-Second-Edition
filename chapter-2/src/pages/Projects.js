@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '../components/Link';
 import List from '../components/List';
 
 function Projects({ userName }) {

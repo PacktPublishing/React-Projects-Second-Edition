@@ -1,4 +1,4 @@
-import * as ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import List from './components/List';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
