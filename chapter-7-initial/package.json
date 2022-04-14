@@ -10,14 +10,13 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
-    "next": "^12.1.0",
-    "react": "^18.0.0-rc.0",
-    "react-dom": "^18.0.0-rc.0",
-    "styled-components": "^5.3.3"
+    "next": "^12.1.5",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.5",
-    "eslint": "7",
-    "eslint-config-next": "12.1.0"
+    "eslint": "^8.13.0",
+    "eslint-config-next": "^12.1.5"
   }
 }
