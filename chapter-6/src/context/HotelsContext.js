@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 export const HotelsContext = createContext();
 
@@ -45,7 +45,7 @@ const reducer = (state, action) => {
 export const HotelsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetchHotels() {
+  const fetchHotels = useCallback(async () => {
     try {
       const data = await fetch(
         `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/hotels`,
@@ -58,9 +58,9 @@ export const HotelsContextProvider = ({ children }) => {
     } catch (e) {
       dispatch({ type: 'GET_HOTELS_ERROR', payload: e.message });
     }
-  }
+  }, []);
 
-  async function fetchHotel(hotelId) {
+  const fetchHotel = useCallback(async (hotelId) => {
     try {
       const data = await fetch(
         `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/hotels/${hotelId}`,
@@ -73,7 +73,7 @@ export const HotelsContextProvider = ({ children }) => {
     } catch (e) {
       dispatch({ type: 'GET_HOTEL_ERROR', payload: e.message });
     }
-  }
+  }, []);
 
   return (
     <HotelsContext.Provider value={{ ...state, fetchHotels, fetchHotel }}>

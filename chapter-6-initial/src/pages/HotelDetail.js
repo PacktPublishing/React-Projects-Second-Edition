@@ -24,11 +24,11 @@ function HotelDetail() {
 
   useEffect(() => {
     hotelId && !hotel.id && fetchHotel(hotelId);
-  }, [hotelId]);
+  }, [fetchHotel, hotel.id, hotelId]);
 
   useEffect(() => {
     hotelId && !reviews.length && fetchReviews(hotelId);
-  }, [hotelId]);
+  }, [fetchReviews, hotelId, reviews.length]);
 
   return (
     <>

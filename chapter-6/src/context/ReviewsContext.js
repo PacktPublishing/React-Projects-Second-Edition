@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 export const ReviewsContext = createContext();
 
@@ -38,7 +38,7 @@ const reducer = (state, action) => {
 export const ReviewsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetchReviews(hotelId) {
+  const fetchReviews = useCallback(async (hotelId) => {
     try {
       const data = await fetch(
         `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/hotels/${hotelId}/reviews`,
@@ -51,41 +51,44 @@ export const ReviewsContextProvider = ({ children }) => {
     } catch (e) {
       dispatch({ type: 'GET_REVIEWS_ERROR', payload: e.message });
     }
-  }
+  }, []);
 
-  async function addReview({ hotelId, title, description, rating }) {
-    const reviewId = Math.floor(Math.random() * 100);
+  const addReview = useCallback(
+    async ({ hotelId, title, description, rating }) => {
+      const reviewId = Math.floor(Math.random() * 100);
 
-    try {
-      const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/reviews`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            id: reviewId,
-            hotelId,
-            title,
-            description,
-            rating,
-          }),
-        },
-      );
-      const result = await data.json();
-
-      if (result) {
-        dispatch({
-          type: 'ADD_REVIEW_SUCCESS',
-          payload: {
-            id: reviewId,
-            hotelId,
-            title,
-            description,
-            rating,
+      try {
+        const data = await fetch(
+          `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/reviews`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              id: reviewId,
+              hotelId,
+              title,
+              description,
+              rating,
+            }),
           },
-        });
-      }
-    } catch {}
-  }
+        );
+        const result = await data.json();
+
+        if (result) {
+          dispatch({
+            type: 'ADD_REVIEW_SUCCESS',
+            payload: {
+              id: reviewId,
+              hotelId,
+              title,
+              description,
+              rating,
+            },
+          });
+        }
+      } catch {}
+    },
+    [],
+  );
 
   return (
     <ReviewsContext.Provider value={{ ...state, fetchReviews, addReview }}>
