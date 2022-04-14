@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 export const ListsContext = createContext();
 
@@ -46,7 +46,7 @@ const reducer = (state, action) => {
 export const ListsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetchLists() {
+  const fetchLists = useCallback(async () => {
     try {
       const data = await fetch(
         `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists`,
@@ -59,21 +59,22 @@ export const ListsContextProvider = ({ children }) => {
     } catch (e) {
       dispatch({ type: 'GET_LISTS_ERROR', payload: e.message });
     }
-  }
+  }, []);
 
-   async function fetchList(listId) {
-       try {
-         const data = await fetch(`https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}`);
-         const result = await data.json();
-     
-         if (result) {
-           dispatch({ type: 'GET_LIST_SUCCESS', payload: result });
-         }
-       } catch (e) {
-         dispatch({ type: 'GET_LIST_ERROR', payload: e.message });
-       }
-     }
-    
+  const fetchList = useCallback(async (listId) => {
+    try {
+      const data = await fetch(
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}`,
+      );
+      const result = await data.json();
+
+      if (result) {
+        dispatch({ type: 'GET_LIST_SUCCESS', payload: result });
+      }
+    } catch (e) {
+      dispatch({ type: 'GET_LIST_ERROR', payload: e.message });
+    }
+  }, []);
 
   return (
     <ListsContext.Provider value={{ ...state, fetchLists, fetchList }}>

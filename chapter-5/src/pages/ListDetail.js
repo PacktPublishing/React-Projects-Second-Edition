@@ -22,11 +22,11 @@ function ListDetail() {
 
   useEffect(() => {
     listId && !items.length && fetchItems(listId);
-  }, [items, listId]);
+  }, [fetchItems, items, listId]);
 
   useEffect(() => {
     listId && fetchList(listId);
-  }, [listId]);
+  }, [fetchList, listId]);
 
   return (
     <>

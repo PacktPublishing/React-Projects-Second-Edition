@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 export const ItemsContext = createContext();
 
@@ -38,7 +38,7 @@ const reducer = (state, action) => {
 export const ItemsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetchItems(listId) {
+  const fetchItems = useCallback(async (listId) => {
     try {
       const data = await fetch(
         `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}/items`,
@@ -51,9 +51,9 @@ export const ItemsContextProvider = ({ children }) => {
     } catch (e) {
       dispatch({ type: 'GET_ITEMS_ERROR', payload: e.message });
     }
-  }
+  }, []);
 
-  async function addItem({ listId, title, quantity, price }) {
+  const addItem = useCallback(async ({ listId, title, quantity, price }) => {
     const itemId = Math.floor(Math.random() * 100);
 
     try {
@@ -85,7 +85,7 @@ export const ItemsContextProvider = ({ children }) => {
         });
       }
     } catch {}
-  }
+  }, [])
 
   return (
     <ItemsContext.Provider value={{ ...state, fetchItems, addItem }}>

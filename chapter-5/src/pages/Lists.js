@@ -35,7 +35,7 @@ const Lists = () => {
  
    useEffect(() => {
      !lists.length && fetchLists()
-   }, [lists])
+   }, [fetchLists, lists])
   
   return (
     <>
