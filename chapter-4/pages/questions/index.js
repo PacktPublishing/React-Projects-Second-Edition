@@ -17,32 +17,32 @@ const CardLink = styled.a`
 
 function Questions({ questions, hasMore, page }) {
   return (
-      <>
+    <>
       <Head>
-       <title>Questions</title>
-</Head>
-    <QuestionsContainer>
-      <h2>Questions</h2>
-      <div>
-        {questions.map((question) => (
-          <Link
-            href={`/questions/${question.question_id}`}
-            key={question.question_id}
-            passHref
-          >
-            <CardLink>
-              <Card
-                key={question.question_id}
-                title={question.title}
-                views={question.view_count}
-                answers={question.answer_count}
-              />
-            </CardLink>
-          </Link>
-        ))}
-      </div>
-      <Pagination currentPage={parseInt(page) || 1} hasMore={hasMore} />
-    </QuestionsContainer>
+        <title>Questions</title>
+      </Head>
+      <QuestionsContainer>
+        <h2>Questions</h2>
+        <div>
+          {questions.map((question) => (
+            <Link
+              href={`/questions/${question.question_id}`}
+              key={question.question_id}
+              passHref
+            >
+              <CardLink>
+                <Card
+                  key={question.question_id}
+                  title={question.title}
+                  views={question.view_count}
+                  answers={question.answer_count}
+                />
+              </CardLink>
+            </Link>
+          ))}
+        </div>
+        <Pagination currentPage={parseInt(page) || 1} hasMore={hasMore} />
+      </QuestionsContainer>
     </>
   );
 }
