@@ -8,20 +8,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "@graphql-tools/mock": "^8.6.6",
-    "@graphql-tools/schema": "^8.3.8",
-    "bcryptjs": "^2.4.3",
-    "express-graphql": "^0.12.0",
-    "graphql": "^16.3.0",
-    "jsonwebtoken": "^8.5.1",
-    "next": "^12.1.5",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "styled-components": "^5.3.5"
+    "@apollo/client": "3.5.10",
+    "@graphql-tools/mock": "8.6.6",
+    "@graphql-tools/schema": "8.3.8",
+    "bcryptjs": "2.4.3",
+    "express-graphql": "0.12.0",
+    "graphql": "16.3.0",
+    "jsonwebtoken": "8.5.1",
+    "next": "12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "styled-components": "5.3.5"
   },
   "devDependencies": {
-    "eslint": "^8.13.0",
-    "eslint-config-next": "^12.1.5"
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5"
   }
 }
