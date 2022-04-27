@@ -27,9 +27,16 @@ All of the code is organized into folders. For example, Chapter02.
 
 The code will look like the following:
 ```
-if (test expression)
-{
-  Statement upon condition is true
+function App() {
+  return (
+    <div className='container'>
+      <nav className='navbar sticky-top navbar-light bg-dark'>
+        <h1 className='navbar-brand text-light'>Rick and Morty</h1>
+      </nav>
+
+      <List />
+    </div>
+  );
 }
 ```
 
