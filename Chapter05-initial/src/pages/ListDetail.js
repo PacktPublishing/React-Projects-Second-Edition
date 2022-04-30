@@ -17,7 +17,7 @@ function ListDetail() {
   const { listId } = useParams();
 
   const [loading, error, data] = useDataFetching(
-    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/items/',
+    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/items/',
   );
 
   const [items, setItems] = useState([]);

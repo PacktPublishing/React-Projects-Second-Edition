@@ -4,7 +4,7 @@ import './Backlog.css';
 
 function Backlog() {
   const [loading, error, tasks] = useDataFetching(
-    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/tasks',
+    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks',
   );
 
   return (

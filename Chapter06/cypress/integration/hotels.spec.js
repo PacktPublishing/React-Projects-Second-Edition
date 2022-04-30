@@ -1,16 +1,16 @@
 describe('Cypress', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'PacktPublishing/React-Projects-Second-Editon/hotels', {
+    cy.intercept('GET', 'PacktPublishing/React-Projects-Second-Edition/hotels', {
       fixture: 'hotels.json',
     });
     cy.intercept(
       'GET',
-      'PacktPublishing/React-Projects-Second-Editon/hotels/*',
+      'PacktPublishing/React-Projects-Second-Edition/hotels/*',
       { fixture: 'hotel.json' },
     );
     cy.intercept(
       'GET',
-      'PacktPublishing/React-Projects-Second-Editon/hotels/*/reviews',
+      'PacktPublishing/React-Projects-Second-Edition/hotels/*/reviews',
       [],
     );
   });

@@ -41,7 +41,7 @@ export const ReviewsContextProvider = ({ children }) => {
   const fetchReviews = useCallback(async (hotelId) => {
     try {
       const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/hotels/${hotelId}/reviews`,
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/hotels/${hotelId}/reviews`,
       );
       const result = await data.json();
 
@@ -59,7 +59,7 @@ export const ReviewsContextProvider = ({ children }) => {
 
       try {
         const data = await fetch(
-          `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/reviews`,
+          `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/reviews`,
           {
             method: 'POST',
             body: JSON.stringify({

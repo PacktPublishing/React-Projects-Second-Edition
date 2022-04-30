@@ -41,7 +41,7 @@ export const ItemsContextProvider = ({ children }) => {
   const fetchItems = useCallback(async (listId) => {
     try {
       const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}/items`,
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/lists/${listId}/items`,
       );
       const result = await data.json();
 
@@ -58,7 +58,7 @@ export const ItemsContextProvider = ({ children }) => {
 
     try {
       const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/items`,
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/items`,
         {
           method: 'POST',
           body: JSON.stringify({

@@ -20,7 +20,7 @@ function onDragOver(e) {
 
 function Board() {
   const [loading, error, data] = useDataFetching(
-    `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/tasks`,
+    `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks`,
   );
 
   const [tasks, setTasks] = useState([]);

@@ -31,7 +31,7 @@ const Lists = () => {
   let navigate = useNavigate();
 
   const [loading, error, data] = useDataFetching(
-    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists',
+    'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/lists',
   );
 
   return (

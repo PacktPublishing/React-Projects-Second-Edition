@@ -49,7 +49,7 @@ export const ListsContextProvider = ({ children }) => {
   const fetchLists = useCallback(async () => {
     try {
       const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists`,
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/lists`,
       );
       const result = await data.json();
 
@@ -64,7 +64,7 @@ export const ListsContextProvider = ({ children }) => {
   const fetchList = useCallback(async (listId) => {
     try {
       const data = await fetch(
-        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Editon/lists/${listId}`,
+        `https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/lists/${listId}`,
       );
       const result = await data.json();
 
