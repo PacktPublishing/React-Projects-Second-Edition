@@ -14,7 +14,7 @@ function App() {
   );
 }
 
-const container = document.getElementById('app');
+const container = document.getElementById('root');
 
 const root = ReactDOM.createRoot(container);
 
