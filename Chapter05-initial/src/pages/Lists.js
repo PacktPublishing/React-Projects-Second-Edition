@@ -14,7 +14,6 @@ const ListLink = styled(Link)`
   display: flex;
   text-align: left;
   align-items: center;
-  padding: 1%;
   background: lightGray;
   border-radius: 5px;
   padding: 10px;
