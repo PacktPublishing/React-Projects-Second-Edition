@@ -33,7 +33,7 @@ function ListDetail() {
       {navigate && (
         <NavBar
           goBack={() => navigate(-1)}
-          openForm={() => navigate(`/list/${listId}//new`)}
+          openForm={() => navigate(`/list/${listId}/new`)}
         />
       )}
       <ListItemWrapper>
